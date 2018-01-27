@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //@FeignClient("helloprovider")
-//@FeignClient("spring-cloud-demo-server")
-//@RequestMapping(path = "/hello")
+@FeignClient("spring-cloud-demo-server")
+@RequestMapping(path = "/hello")
 public interface Hello {
 
     @RequestMapping(path = "/sayhi", method = RequestMethod.GET)

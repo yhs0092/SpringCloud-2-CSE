@@ -31,21 +31,23 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(path = "/hello", produces = MediaType.TEXT_PLAIN)
 public class HelloService {
-  //  @Autowired
-//  Hello client;
-  @Autowired
-  private RestTemplate restTemplate;
+    @Autowired
+  Hello client;
+//  @Autowired
+//  private RestTemplate restTemplate;
 
-  @Autowired
-  private DiscoveryClient discoveryClient;
+//  @Autowired
+//  private DiscoveryClient discoveryClient;
 
   @RequestMapping(method = RequestMethod.GET)
   public String hello(String name) {
-    List<ServiceInstance> instanceList = discoveryClient.getInstances("spring-cloud-demo-server");
+//    List<ServiceInstance> instanceList = discoveryClient.getInstances("spring-cloud-demo-server");
     System.out.println("========================================");
-    instanceList.forEach(System.out::println);
+//    instanceList.forEach(System.out::println);
 //    return client.sayHi(name);
-    ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://spring-cloud-demo-server/hello/sayhi?name=" + name, String.class);
-    return responseEntity.getBody();
+//    ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://spring-cloud-demo-server/hello/sayhi?name=" + name, String.class);
+    System.out.println(client.sayHi(name));
+    return client.sayHi(name);
+//    return responseEntity.getBody();
   }
 }

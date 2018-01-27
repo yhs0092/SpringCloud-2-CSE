@@ -13,10 +13,10 @@ import com.netflix.loadbalancer.ServerList;
 import io.servicecomb.springboot.starter.discovery.ServiceCombServerList;
 
 public class SayHelloConfiguration {
-  @Bean
-  public IPing ribbonPing(IClientConfig config) {
-    return new PingUrl();
-  }
+//  @Bean
+////  public IPing ribbonPing(IClientConfig config) {
+////    return new PingUrl();
+////  }
 
   @Bean
   public IRule ribbonRule(IClientConfig config) {
