@@ -15,9 +15,13 @@
  */
 package io.consumer;
 
+import java.util.List;
+
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +29,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/hello", produces = MediaType.TEXT_PLAIN)
 public class HelloService {
+//  @Autowired
+//  Hello client;
+
   @Autowired
-  Hello client;
+  private DiscoveryClient discoveryClient;
 
   @RequestMapping(method = RequestMethod.GET)
   public String hello(String name) {
-    return client.sayHi(name);
+    List<ServiceInstance> instanceList = discoveryClient.getInstances("spring-cloud-demo-server");
+    System.out.println("========================================");
+    instanceList.forEach(System.out::println);
+//    return client.sayHi(name);
+    return name;
   }
-
 }

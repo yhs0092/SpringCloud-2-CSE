@@ -17,15 +17,12 @@
 package io.consumer;
 
 
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("helloprovider")
-@RequestMapping(path = "/hello")
+//@FeignClient("helloprovider")
+//@RequestMapping(path = "/hello")
 public interface Hello {
 
-  @RequestMapping(path = "/sayhi", method = RequestMethod.GET)
+  //  @RequestMapping(path = "/sayhi", method = RequestMethod.GET)
   String sayHi(@RequestParam(name = "name") String name);
 }
