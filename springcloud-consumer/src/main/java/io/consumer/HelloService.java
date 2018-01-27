@@ -22,15 +22,19 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping(path = "/hello", produces = MediaType.TEXT_PLAIN)
 public class HelloService {
-//  @Autowired
+  //  @Autowired
 //  Hello client;
+  @Autowired
+  private RestTemplate restTemplate;
 
   @Autowired
   private DiscoveryClient discoveryClient;
@@ -41,6 +45,7 @@ public class HelloService {
     System.out.println("========================================");
     instanceList.forEach(System.out::println);
 //    return client.sayHi(name);
-    return name;
+    ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://spring-cloud-demo-server/hello/sayhi?name=" + name, String.class);
+    return responseEntity.getBody();
   }
 }
